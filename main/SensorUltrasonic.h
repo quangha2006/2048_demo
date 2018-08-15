@@ -6,13 +6,11 @@
 class SensorUltrasonic
 {
   public:
-    SensorUltrasonic(unsigned char echoPIN, unsigned char trigPIN, unsigned int maxDistance = MAX_DISTANCE);
-    
-    float GetCm();
+    SensorUltrasonic(unsigned char echoPIN, unsigned char trigPIN);
+
+    int GetCm();
 
   private:
-    unsigned int m_MaxDistance;
-    
     unsigned char m_TrigPIN;
     unsigned char m_EchoPIN;
 };

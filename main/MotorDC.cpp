@@ -14,36 +14,36 @@ MotorDC::MotorDC(unsigned char in1PIN, unsigned char in2PIN, unsigned char enPIN
   pinMode(in2PIN, OUTPUT);
 }
 
-void MotorDC::RunForward(int numberPWM = PWM_MAX)
+void MotorDC::RunForward(int numberPWM)
 {
-  if(m_MotorState != M_RUN_FORWARD || m_PWM != numberPWM)
+  if (m_MotorState != M_RUN_FORWARD || m_PWM != numberPWM)
   {
-    LOGLN("MOTOR RUN FORWARD ...");
-    
+    //LOGLN("MOTOR RUN FORWARD ...");
+
     // Control Motor's SPEED.
     analogWrite(m_EN_PIN, numberPWM);
-    
+
     digitalWrite(m_IN1_PIN, HIGH);
     digitalWrite(m_IN2_PIN, LOW);
-    
+
     // Set Value.
     m_PWM = numberPWM;
     m_MotorState = M_RUN_FORWARD;
   }
 }
 
-void MotorDC::RunBackward(int numberPWM = PWM_MAX)
+void MotorDC::RunBackward(int numberPWM)
 {
-  if(m_MotorState != M_RUN_BACKWARD)
+  if (m_MotorState != M_RUN_BACKWARD || m_PWM != numberPWM)
   {
-    LOGLN("MOTOR RUN BACKWARD ...");
-    
+    //LOGLN("MOTOR RUN BACKWARD ...");
+
     // Control Motor's SPEED.
     analogWrite(m_EN_PIN, numberPWM);
-    
+
     digitalWrite(m_IN1_PIN, LOW);
     digitalWrite(m_IN2_PIN, HIGH);
-    
+
     // Set Value.
     m_PWM = numberPWM;
     m_MotorState = M_RUN_BACKWARD;
@@ -52,10 +52,10 @@ void MotorDC::RunBackward(int numberPWM = PWM_MAX)
 
 void MotorDC::Stop()
 {
-  if(m_MotorState != M_STOP)
+  if (m_MotorState != M_STOP)
   {
-    LOGLN("MOTOR STOP ...");
-    
+    //LOGLN("MOTOR STOP ...");
+
     digitalWrite(m_IN1_PIN, LOW);
     digitalWrite(m_IN2_PIN, LOW);
 
@@ -63,8 +63,8 @@ void MotorDC::Stop()
     m_MotorState = M_STOP;
   }
 }
-void MotorDC::SetSpeed(int numberPWM)
+int MotorDC::GetSpeed()
 {
-  analogWrite(m_EN_PIN, numberPWM);
+  return m_PWM;
 }
 

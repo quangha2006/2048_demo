@@ -1,20 +1,13 @@
 /*
 	SharpIR
-
 	Arduino library for retrieving distance (in cm) from the analog GP2Y0A21Y and GP2Y0A02YK
-
-	From an original version of Dr. Marcal Casas-Cartagena (marcal.casas@gmail.com)     
-	
-    Version : 1.0 : Guillaume Rico
-
+	From an original version of Dr. Marcal Casas-Cartagena (marcal.casas@gmail.com)
+  Version : 1.0 : Guillaume Rico
 	https://github.com/guillaume-rico/SharpIR
-
 */
 
-#ifndef SharpIR_h
-#define SharpIR_h
-
-#define NB_SAMPLE 25
+#pragma once
+////
 
 #ifdef ARDUINO
   #include "Arduino.h"
@@ -22,19 +15,19 @@
   #include "Particle.h"
 #endif
 
+#define NB_SAMPLE 25
+
 class SharpIR
 {
   public:
 
     SharpIR (int irPin, long sensorModel);
-    int distance();
+    int GetCm();
 
   private:
 
-    void sort(int a[], int size);
-    
+    void Sort(int a[], int size);
+
     int _irPin;
     long _model;
 };
-
-#endif
